@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import BookCard from "./BookCard";
 import Spinner from "./Spinner";
+import Navbar from "./Navbar";
 
 function BookSearch() {
   // State variables for query and books
@@ -55,31 +55,23 @@ function BookSearch() {
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
-  <div className="flex-1 text-center flex-col">
-    <h1 className="text-5xl mb-5 ml-36">Personal Bookshelf</h1>
-    <h1 className="font-bold text-xl ml-36">Search By Book Name:</h1>
-    <input
-      type="text"
-      value={query}
-      onChange={handleInputChange}
-      placeholder="Harry Potter"
-      className="mx-auto border-2 border-black p-1 m-3 rounded-lg mb-10 inline-block ml-36"
-    />
-  </div>
-  <Link
-    to="/my-bookshelf"
-    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full mt-4 sm:mt-0"
-  >
-    My Bookshelf
-  </Link>
-</div>
+      <Navbar />
+      <div className="flex flex-col justify-center align-middle">
+        <h1 className="font-bold text-2xl mx-auto">Search By Book Name:</h1>
+        <input
+          type="text"
+          value={query}
+          onChange={handleInputChange}
+          placeholder="Harry Potter"
+          className="mx-auto border-2 border-black p-1 m-3 rounded-lg mb-10"
+        />
+      </div>
 
       {isLoading ? (
         <Spinner /> // Show spinner when fetching
       ) : query.length === 0 ? (
-        <div className="text-center text-3xl mt-10 mr-24">
-          Search for your books
+        <div className="text-center text-3xl mx-auto">
+           Searched Books will appear here...📚
         </div>
       ) : (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-1 mx-8">
